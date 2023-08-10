@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_corner_bg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:paddingStart="20dp"
+        android:paddingTop="32dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="28dp"
+        android:layout_marginTop="20dp">
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtSubscriptionAmount"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_semibold"
+            android:gravity="center"
+            android:text="Error"
+            android:textColor="@color/black"
+            android:textSize="28sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtSubscriptionMsg"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_regular"
+            android:gravity="center"
+            android:text="monthly"
+            android:textColor="@color/grey3"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtSubscriptionAmount" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/rupee"
+        android:layout_gravity="top|center"
+        android:tint="@color/white"
+        android:background="@drawable/circle_shape"
+        android:padding="10dp"
+        />
+
+</FrameLayout>

@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".activities.MyAccountActivity">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="24dp"
+        android:onClick="goBack"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_keyboard_backspace_24" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/header"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:gravity="left"
+        android:text="My Account"
+        android:textColor="@color/grey1"
+        android:textSize="28sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/imgBack"
+        app:layout_constraintTop_toBottomOf="@id/imgBack" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txtUserNameInitials"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="48dp"
+        android:background="@drawable/circle_shape"
+        android:fontFamily="@font/montserrat_bold"
+        android:gravity="center"
+        android:letterSpacing="0.1"
+        android:text="MP"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="@id/imgBack"
+        app:layout_constraintTop_toBottomOf="@id/header" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txtUsername"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="4dp"
+        android:fontFamily="@font/montserrat_semibold"
+        android:letterSpacing="0.1"
+        android:lineSpacingExtra="5dp"
+        android:text="Mihir Parkhe"
+        android:textColor="@color/grey3"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@id/center_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/txtUserNameInitials" />
+
+    <View
+        android:id="@+id/center_view"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        app:layout_constraintBottom_toBottomOf="@id/txtUserNameInitials"
+        app:layout_constraintStart_toEndOf="@id/txtUserNameInitials"
+        app:layout_constraintTop_toTopOf="@id/txtUserNameInitials" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txtUserMobile"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="24dp"
+        android:fontFamily="@font/montserrat_regular"
+        android:letterSpacing="0.1"
+        android:lineSpacingExtra="5dp"
+        android:text="+91 9988776655"
+        android:textColor="@color/grey4"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/txtUserNameInitials"
+        app:layout_constraintTop_toBottomOf="@id/center_view" />
+
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/txtUserNameInitials"
+        app:layout_constraintTop_toBottomOf="@id/txtUserNameInitials">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtMySubscription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
+            android:fontFamily="@font/montserrat_medium"
+            android:letterSpacing="0.1"
+            android:lineSpacingExtra="5dp"
+            android:paddingTop="24dp"
+            android:paddingBottom="24dp"
+            android:text="My Monthly Donation"
+            android:textColor="@color/grey3"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/view_my_sub"
+            app:layout_constraintTop_toBottomOf="@id/view_my_sub" />
+
+        <View
+            android:id="@+id/view_my_sub"
+            android:layout_width="match_parent"
+            android:layout_height="0.8dp"
+            android:background="@color/grey6"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="@id/txtMySubscription"
+            app:layout_constraintTop_toBottomOf="@id/txtMySubscription" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtMembers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
+            android:fontFamily="@font/montserrat_medium"
+            android:letterSpacing="0.1"
+            android:lineSpacingExtra="5dp"
+            android:paddingTop="24dp"
+            android:paddingBottom="24dp"
+            android:text="My Members"
+            android:textColor="@color/grey3"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/view_my_sub"
+            app:layout_constraintTop_toBottomOf="@id/view_my_sub" />
+
+        <View
+            android:id="@+id/view_members"
+            android:layout_width="match_parent"
+            android:layout_height="0.8dp"
+            android:background="@color/grey6"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/txtMembers"
+            app:layout_constraintTop_toBottomOf="@id/txtMembers" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtDonations"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
+            android:fontFamily="@font/montserrat_medium"
+            android:letterSpacing="0.1"
+            android:lineSpacingExtra="5dp"
+            android:paddingTop="24dp"
+            android:paddingBottom="24dp"
+            android:text="My Donations"
+            android:textColor="@color/grey3"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/txtUserNameInitials"
+            app:layout_constraintTop_toBottomOf="@id/view_members" />
+
+        <View
+            android:id="@+id/view_donations"
+            android:layout_width="match_parent"
+            android:layout_height="0.8dp"
+            android:background="@color/grey6"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/txtDonations"
+            app:layout_constraintTop_toBottomOf="@id/txtDonations" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtProfile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
+            android:fontFamily="@font/montserrat_medium"
+            android:letterSpacing="0.1"
+            android:lineSpacingExtra="5dp"
+            android:paddingTop="24dp"
+            android:paddingBottom="24dp"
+            android:text="Change Profile"
+            android:textColor="@color/grey3"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/txtUserNameInitials"
+            app:layout_constraintTop_toBottomOf="@id/view_donations" />
+
+        <View
+            android:id="@+id/viewProfile"
+            android:layout_width="match_parent"
+            android:layout_height="0.8dp"
+            android:background="@color/grey6"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/txtProfile"
+            app:layout_constraintTop_toBottomOf="@id/txtProfile" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtChangePassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
+            android:fontFamily="@font/montserrat_medium"
+            android:letterSpacing="0.1"
+            android:lineSpacingExtra="5dp"
+            android:paddingTop="24dp"
+            android:paddingBottom="24dp"
+            android:text="Change Password"
+            android:textColor="@color/grey3"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/txtUserNameInitials"
+            app:layout_constraintTop_toBottomOf="@id/viewProfile" />
+
+        <View
+            android:id="@+id/viewPassword"
+            android:layout_width="match_parent"
+            android:layout_height="0.8dp"
+            android:background="@color/grey6"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/txtChangePassword"
+            app:layout_constraintTop_toBottomOf="@id/txtChangePassword" />
+
+
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txtLogout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:fontFamily="@font/montserrat_semibold"
+        android:letterSpacing="0.1"
+        android:lineSpacingExtra="5dp"
+        android:paddingTop="24dp"
+        android:paddingBottom="24dp"
+        android:text="Logout"
+        android:textColor="@color/orange_dark"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/txtUserNameInitials" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

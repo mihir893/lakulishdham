@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".activities.VerificationActivity">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_keyboard_backspace_24"
+        android:onClick="goBack"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/header"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:gravity="left"
+        android:paddingStart="16dp"
+        android:text="Verification"
+        android:textColor="@color/orange_dark"
+        android:textSize="28sp"
+        app:layout_constraintBottom_toTopOf="@id/otp_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txt_msg"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
+        android:fontFamily="@font/montserrat_regular"
+        android:lineSpacingExtra="5dp"
+        android:paddingStart="16dp"
+        android:text="Enter the verification code sent to number\n+91 1122334455"
+        android:textColor="@color/grey3"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header" />
+
+    <in.aabhasjindal.otptextview.OtpTextView
+        android:id="@+id/otp_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:textColor="@color/black"
+        app:height="70dp"
+        app:width="70dp"
+        app:bar_enabled="false"
+        app:otp_box_background="@drawable/semi_round_edittext"
+        app:length="4"
+        app:otp_text_size="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <!--<LinearLayout
+        android:id="@+id/ll_edittext"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:orientation="horizontal"
+        android:weightSum="100"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatEditText
+            style="@style/EditTextStyle1"
+            android:layout_width="0dp"
+            android:layout_height="65dp"
+            android:layout_weight="25"
+            android:inputType="numberPassword"
+            android:maxLength="1"
+            tools:text="5" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            style="@style/EditTextStyle1"
+            android:layout_width="0dp"
+            android:layout_height="65dp"
+            android:layout_marginStart="10dp"
+            android:layout_weight="25"
+            android:inputType="numberPassword"
+            android:maxLength="1"
+            tools:text="5" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            style="@style/EditTextStyle1"
+            android:layout_width="0dp"
+            android:layout_height="65dp"
+            android:layout_marginStart="10dp"
+            android:layout_weight="25"
+            android:inputType="numberPassword"
+            android:maxLength="1"
+            tools:text="5" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            style="@style/EditTextStyle1"
+            android:layout_width="0dp"
+            android:layout_height="65dp"
+            android:layout_marginStart="10dp"
+            android:layout_weight="25"
+            android:inputType="numberPassword"
+            android:maxLength="1"
+            tools:text="5" />
+
+    </LinearLayout>-->
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnVerify"
+        style="@style/ButtonStyle"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="24dp"
+        android:text="VERIFY"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/otp_view"
+        android:onClick="OnVerifyClick"/>
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:fontFamily="@font/montserrat_medium"
+        android:text="Didn't receive code?"
+        android:textColor="@color/grey4"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@id/txtResend"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txtResend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:fontFamily="@font/montserrat_semibold"
+        android:padding="8dp"
+        android:text="@string/resend_code"
+        android:textColor="@color/orange_dark"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:onClick="onResendClick"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

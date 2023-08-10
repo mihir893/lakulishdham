@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.EditProfileActivity"
+    android:background="@color/white">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_keyboard_backspace_24"
+        android:onClick="goBack"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/header"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:gravity="left"
+        android:text="Edit Profile"
+        android:textColor="@color/grey1"
+        android:textSize="28sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/imgBack"
+        app:layout_constraintTop_toBottomOf="@id/imgBack" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/edName"
+        style="@style/EditTextStyle"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="48dp"
+        android:hint="@string/full_name"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/edCountry"
+        style="@style/EditTextStyle"
+        android:layout_width="0dp"
+        android:layout_height="?actionBarSize"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/round_edittext"
+        android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_down_24"
+        android:clickable="true"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:hint="@string/select_country"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edName" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/edState"
+        style="@style/EditTextStyle"
+        android:layout_width="0dp"
+        android:layout_height="?actionBarSize"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/round_edittext"
+        android:hint="@string/select_state"
+        android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_down_24"
+        android:clickable="true"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edCountry" />
+
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/edDistrict"
+        style="@style/EditTextStyle"
+        android:layout_width="0dp"
+        android:layout_height="?actionBarSize"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/round_edittext"
+        android:hint="@string/select_district"
+        android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_down_24"
+        android:clickable="true"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edState" />
+
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/edAddress"
+        style="@style/EditTextStyle"
+        android:layout_width="0dp"
+        android:layout_height="?actionBarSize"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/round_edittext"
+        android:hint="@string/select_address"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edDistrict" />
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnSave"
+        style="@style/ButtonStyle"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:text="SAVE CHANGES"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edAddress" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

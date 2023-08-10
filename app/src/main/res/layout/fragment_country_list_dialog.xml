@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragment.AddMemberDialogFragment"
+    android:background="@drawable/semi_round_background"
+    android:padding="24dp">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgClose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/dialogHeader"
+        app:layout_constraintBottom_toBottomOf="@id/dialogHeader"
+        app:srcCompat="@drawable/ic_baseline_close_24"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/dialogHeader"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="8dp"
+        android:paddingBottom="16dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:gravity="center"
+        android:text="Countries"
+        android:textColor="@color/grey1"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/edSearchCountry"
+        style="@style/EditTextStyle"
+        android:hint="Search Country"
+        android:layout_marginTop="16dp"
+        android:layout_height="44dp"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dialogHeader" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvItems"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/edSearchCountry"
+        app:layout_constraintStart_toStartOf="@id/edSearchCountry"
+        app:layout_constraintEnd_toEndOf="@id/edSearchCountry"
+        android:layout_marginTop="16dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

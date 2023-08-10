@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragment.AddMemberDialogFragment"
+    android:background="@drawable/semi_round_background"
+    android:padding="24dp">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgClose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/header"
+        app:layout_constraintBottom_toBottomOf="@id/header"
+        app:srcCompat="@drawable/ic_baseline_close_24"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/header"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:gravity="center"
+        android:text="Select Your Donation"
+        android:textColor="@color/grey1"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txtSingleTimeDonation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header"
+        android:fontFamily="@font/montserrat_medium"
+        android:text="One Time Donation"
+        android:textColor="@color/grey3"
+        android:textSize="16sp"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:layout_marginTop="16dp"
+        android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
+        android:drawableTint="@color/grey"/>
+
+
+    <View
+        android:id="@+id/sepatorLine"
+        android:layout_width="0dp"
+        android:layout_height="0.8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/grey6"
+        app:layout_constraintTop_toBottomOf="@id/txtSingleTimeDonation"
+        app:layout_constraintStart_toStartOf="@id/txtSingleTimeDonation"
+        app:layout_constraintEnd_toEndOf="@id/txtSingleTimeDonation"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txtMonthlyDonation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtSingleTimeDonation"
+        android:fontFamily="@font/montserrat_medium"
+        android:text="Monthly Donation"
+        android:textColor="@color/grey3"
+        android:textSize="16sp"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:layout_marginTop="16dp"
+        android:drawableEnd="@drawable/ic_baseline_arrow_forward_ios_24"
+        android:drawableTint="@color/grey"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

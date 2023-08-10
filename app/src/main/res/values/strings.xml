@@ -1,0 +1,59 @@
+<resources>
+    <string name="app_name">LakulishDham</string>
+    <string name="mobile_number">Mobile Number</string>
+    <string name="password">Password</string>
+    <string name="new_password">New Password</string>
+    <string name="old_password">Old Password</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="don_t_have_an_account">Don\'t have an account?</string>
+    <string name="register_here">Register here</string>
+    <string name="create_new_account">Create New Account</string>
+    <string name="full_name">Full Name</string>
+    <string name="relation">Relation</string>
+    <string name="email">Email</string>
+    <string name="re_enter_passsword">Re-enter Passsword</string>
+    <string name="re_enter_new_passsword">Re-enter New Passsword</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="sign_in">Sign in</string>
+    <string name="terms_amp_conditions"><u>Terms &amp; conditions</u></string>
+    <string name="select_country">Select Country</string>
+    <string name="select_state">Select State</string>
+    <string name="select_district">Select District</string>
+    <string name="select_address">Address</string>
+    <string name="resend_code">Resend Code</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="no_internet">No internet connection</string>
+    <string name="try_again">Something went wrong.. Please try again</string>
+
+    <string name="dashboard_msg">&#x201c; जरुरतमंद की सेवा करना विश्वरुप भगवान की पूजा है।     - प्रितम मुनि &#x201d;
+    \n\n &#x201c; औषधि, शस्त्र (आयुध),विद्या,भक्त/शिष्य का परिक्षा/परिक्षण के परिणामो से निर्णित होता है कि वह कितने श्रेष्ठ/परिणामदायी/मूल्यवान है।         - प्रितम मुनि  &#x201d;
+    \n\n &#x201c; यदि आप सुख की कामना करते है तो याद रखे कि धर्मयुक्त कर्म करने से ही सुख की प्राप्ति होती है।           - प्रितम मुनि  &#x201d;
+    \n\n &#x201c; सर्वाधिक गलतियां हम आवेश और आवेग में करते है। आवेश आवेग को समझे और सहन करे, उसे भोगे नहीं, उससे भागे नहीं।         - प्रितम मुनि  &#x201d;
+    \n\n &#x201c; माया मोह की इच्छाएँ पूरी करते आयुष्य समाप्त हो जाता है, किन्तु ईच्छाएँ पूरी नहीं होती। विवेकी वह है कि जो माया मोह की ईच्छाओं का त्याग कर अपने जीवात्मा के कल्याण हेतु पुरुषार्थ करे।          - प्रितम मुनि  &#x201d;
+    \n\n &#x201c; महान कार्यो को सफल करने के लिए दो गुण आवश्यक है... (1)अनुशासन - आदेश - नियम का पूर्ण पालन करना। (2) समर्पण - चाहे कुछ भी हो... कार्य पूर्ण होने तक संपूर्ण समर्पण।       - प्रितम मुनि  &#x201d;</string>
+
+    <string name="slogan_1">&#x201c; जरुरतमंद की सेवा करना विश्वरुप भगवान की पूजा है।     - प्रितम मुनि &#x201d;</string>
+    <string name="slogan_2">&#x201c; औषधि, शस्त्र (आयुध),विद्या,भक्त/शिष्य का परिक्षा/परिक्षण के परिणामो से निर्णित होता है कि वह कितने श्रेष्ठ/परिणामदायी/मूल्यवान है।         - प्रितम मुनि  &#x201d;</string>
+    <string name="slogan_3">&#x201c; यदि आप सुख की कामना करते है तो याद रखे कि धर्मयुक्त कर्म करने से ही सुख की प्राप्ति होती है।           - प्रितम मुनि  &#x201d;</string>
+    <string name="slogan_4">&#x201c; सर्वाधिक गलतियां हम आवेश और आवेग में करते है। आवेश आवेग को समझे और सहन करे, उसे भोगे नहीं, उससे भागे नहीं।         - प्रितम मुनि  &#x201d;</string>
+    <string name="slogan_5">&#x201c; माया मोह की इच्छाएँ पूरी करते आयुष्य समाप्त हो जाता है, किन्तु ईच्छाएँ पूरी नहीं होती। विवेकी वह है कि जो माया मोह की ईच्छाओं का त्याग कर अपने जीवात्मा के कल्याण हेतु पुरुषार्थ करे।          - प्रितम मुनि  &#x201d;</string>
+    <string name="slogan_6">&#x201c; महान कार्यो को सफल करने के लिए दो गुण आवश्यक है... (1)अनुशासन - आदेश - नियम का पूर्ण पालन करना। (2) समर्पण - चाहे कुछ भी हो... कार्य पूर्ण होने तक संपूर्ण समर्पण।       - प्रितम मुनि  &#x201d;</string>
+
+    <string name="valid_mobile_number">Please Enter Valid Mobile Number of 10 digits.</string>
+    <string name="valid_password">Please Enter Valid Password of at least 6 digits.</string>
+    <string name="old_valid_password">Please Enter Valid Old Password of at least 6 digits.</string>
+    <string name="new_valid_password">Please Enter Valid New Password of at least 6 digits.</string>
+    <string name="confirm_valid_password">Please Enter Valid Confirm Password of at least 6 digits.</string>
+    <string name="confirm_new_valid_password">Please Enter Valid Confirm New Password of at least 6 digits.</string>
+    <string name="password_not_match">Both Passwords are not matched.</string>
+    <string name="lbl_update_now">Update now</string>
+    <string name="lbl_remind_me_later">Later</string>
+    <string name="msg_mandatory_update">A new version of Lakulishdham App is now available. Please update the app to continue.</string>
+    <string name="msg_update_available">A new version of Lakulishdham App is now available. By downloading the latest update you will get the latest features, improvements and bug fixes.</string>
+
+    <string name="support_call">7405499034</string>
+    <string name="support_email"><u>lakulishdham@gmail.com</u></string>
+    <string name="support_web"><u>www.lakulishsanskriti.org</u></string>
+</resources>
