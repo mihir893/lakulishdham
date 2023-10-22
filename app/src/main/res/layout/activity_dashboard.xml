@@ -110,15 +110,14 @@
                 android:layout_marginEnd="24dp"
                 android:layout_marginBottom="16dp"
                 android:gravity="center"
-                android:orientation="horizontal"/>
-
+                android:orientation="horizontal" />
 
 
         </LinearLayout>
 
     </FrameLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="50"
@@ -164,19 +163,42 @@
             android:layout_weight="1"
             android:visibility="gone" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            style="@style/ButtonStyle"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="24dp"
-            android:layout_marginBottom="24dp"
-            android:onClick="ClickOnDonate"
-            android:text="DONATE"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/scrollViewSlogan" />
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingBottom="24dp"
+            android:layout_alignParentBottom="true">
 
-    </LinearLayout>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_onetime_donate"
+                style="@style/ButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="5dp"
+                android:onClick="ClickOnOneTimeDonate"
+                android:text="Onetime Donate"
+                android:textAllCaps="false"
+                android:layout_margin="4dp"
+                android:layout_above="@id/btn_monthly_donate"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_monthly_donate"
+                style="@style/ButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="5dp"
+                android:onClick="ClickOnDonate"
+                android:text="Monthly Donate"
+                android:textAllCaps="false"
+                android:layout_alignParentBottom="true"
+                android:layout_margin="4dp"/>
+
+
+        </RelativeLayout>
+
+    </RelativeLayout>
 
 </LinearLayout>

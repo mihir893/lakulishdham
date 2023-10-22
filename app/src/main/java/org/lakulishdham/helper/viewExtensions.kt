@@ -259,7 +259,7 @@ fun Activity.showAlert(message: String?, positivebuttonText: String?, listener: 
     dialog.show()
 }
 
-fun ViewPager2.setCurrentItem(
+/*fun ViewPager2.setCurrentItem(
     item: Int,
     duration: Long,
     interpolator: TimeInterpolator = AccelerateDecelerateInterpolator(),
@@ -277,13 +277,13 @@ fun ViewPager2.setCurrentItem(
     animator.addListener(object : Animator.AnimatorListener {
         override fun onAnimationStart(animation: Animator?) { beginFakeDrag() }
         override fun onAnimationEnd(animation: Animator?) { endFakeDrag() }
-        override fun onAnimationCancel(animation: Animator?) { /* Ignored */ }
-        override fun onAnimationRepeat(animation: Animator?) { /* Ignored */ }
+        override fun onAnimationCancel(animation: Animator?) { *//* Ignored *//* }
+        override fun onAnimationRepeat(animation: Animator?) { *//* Ignored *//* }
     })
     animator.interpolator = interpolator
     animator.duration = duration
     animator.start()
-}
+}*/
 
 interface DialogOptionsSelectedListener {
     fun onSelect(isYes: Boolean)

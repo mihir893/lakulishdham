@@ -5,15 +5,27 @@ plugins {
 }
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.1"
-
+    signingConfigs {
+        debug {
+            storeFile file('C:\\Users\\mihir\\Desktop\\LakulishDham Folder\\PlayStore Screenshots\\lakulish_keystore.jks')
+            storePassword 'lakulish@2020'
+            keyAlias 'lakulish'
+            keyPassword 'lakulish@2020'
+        }
+        release {
+            storeFile file('C:\\Users\\mihir\\Desktop\\LakulishDham Folder\\PlayStore Screenshots\\lakulish_keystore.jks')
+            storePassword 'lakulish@2020'
+            keyAlias 'lakulish'
+            keyPassword 'lakulish@2020'
+        }
+    }
+    compileSdkVersion 33
     defaultConfig {
         applicationId "org.lakulishdham"
         minSdkVersion 21
-        targetSdkVersion 30
-        versionCode 4
-        versionName "1.0.3"
+        targetSdkVersion 33
+        versionCode 5
+        versionName "2.0.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -22,6 +34,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
     compileOptions {
@@ -71,7 +84,7 @@ dependencies {
     implementation 'com.github.bumptech.glide:okhttp3-integration:4.10.0'
 
     //RazorPay
-    implementation 'com.razorpay:checkout:1.6.12'
+    implementation 'com.razorpay:checkout:1.6.35'
 
     //Search AlertDialog
     implementation 'com.github.mirrajabi:search-dialog:1.2.4'

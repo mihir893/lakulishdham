@@ -254,6 +254,10 @@ class DashboardActivity : BaseActivity(), DashboardViewModel.DashboardViewModelC
         fireIntent(SubscriptionPlanListActivity::class.java, false)
     }
 
+    fun ClickOnOneTimeDonate(view: View) {
+        fireIntent(UrlDisplayActivity::class.java, false)
+    }
+
     fun startPayment(data: OrderData?) {
 
         checkout = Checkout()
