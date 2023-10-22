@@ -179,9 +179,10 @@
                 android:layout_height="wrap_content"
                 android:lineSpacingExtra="5dp"
                 android:onClick="ClickOnOneTimeDonate"
-                android:text="Onetime Donate"
+                android:text="One time Donate"
                 android:textAllCaps="false"
                 android:layout_margin="4dp"
+                android:letterSpacing="0"
                 android:layout_above="@id/btn_monthly_donate"/>
 
             <androidx.appcompat.widget.AppCompatButton
@@ -194,6 +195,7 @@
                 android:text="Monthly Donate"
                 android:textAllCaps="false"
                 android:layout_alignParentBottom="true"
+                android:letterSpacing="0"
                 android:layout_margin="4dp"/>
 
 
