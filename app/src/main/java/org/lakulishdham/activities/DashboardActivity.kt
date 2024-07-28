@@ -2,18 +2,24 @@ package org.lakulishdham.activities
 
 import android.content.DialogInterface
 import android.content.Intent
+import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.Drawable
+import android.graphics.text.LineBreaker.JUSTIFICATION_MODE_INTER_WORD
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
+import android.text.SpannableString
+import android.text.SpannableStringBuilder
+import android.text.Spanned
 import android.text.method.ScrollingMovementMethod
+import android.text.style.ImageSpan
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.Animation
-import android.view.animation.LinearInterpolator
-import android.view.animation.TranslateAnimation
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
@@ -29,7 +35,13 @@ import com.google.gson.Gson
 import com.razorpay.Checkout
 import com.razorpay.PaymentData
 import com.razorpay.PaymentResultWithDataListener
-import kotlinx.android.synthetic.main.activity_dashboard.*
+import kotlinx.android.synthetic.main.activity_dashboard.indicator_layout
+import kotlinx.android.synthetic.main.activity_dashboard.scrollViewSlogan
+import kotlinx.android.synthetic.main.activity_dashboard.tv_justified_paragraph
+import kotlinx.android.synthetic.main.activity_dashboard.txtSlogan
+import kotlinx.android.synthetic.main.activity_dashboard.txtWelcomeUser
+import kotlinx.android.synthetic.main.activity_dashboard.viewPagerText
+import kotlinx.android.synthetic.main.activity_dashboard.viewPgerSlider
 import org.json.JSONObject
 import org.lakulishdham.BaseActivity
 import org.lakulishdham.BuildConfig
@@ -39,12 +51,26 @@ import org.lakulishdham.adapters.TextSliderAdapter
 import org.lakulishdham.factories.DashboardViewModelFactory
 import org.lakulishdham.fragment.DonationOptionDialogFragment
 import org.lakulishdham.fragment.OneTimeDonationDialogFragment
-import org.lakulishdham.helper.*
-import org.lakulishdham.model.*
+import org.lakulishdham.helper.AppConstants
+import org.lakulishdham.helper.AppLogger
+import org.lakulishdham.helper.DialogOptionsSelectedListener
+import org.lakulishdham.helper.Functions
+import org.lakulishdham.helper.fireIntent
+import org.lakulishdham.helper.fireIntentWithData
+import org.lakulishdham.helper.showAlert
+import org.lakulishdham.helper.showRedError
+import org.lakulishdham.model.AddDonationRequest
+import org.lakulishdham.model.DonationListData
+import org.lakulishdham.model.GalleryData
+import org.lakulishdham.model.OrderData
+import org.lakulishdham.model.UserData
 import org.lakulishdham.utility.CustomProgressUtils
 import org.lakulishdham.utility.DateFormatterUtils
 import org.lakulishdham.viewmodels.DashboardViewModel
-import java.util.*
+import java.util.Date
+import java.util.Timer
+import java.util.TimerTask
+import java.util.concurrent.atomic.AtomicBoolean
 
 
 class DashboardActivity : BaseActivity(), DashboardViewModel.DashboardViewModelCallback,
@@ -96,7 +122,7 @@ class DashboardActivity : BaseActivity(), DashboardViewModel.DashboardViewModelC
 
         viewModel.fetchGalleryImages()
 
-        txtSlogan.movementMethod = ScrollingMovementMethod()
+        tv_justified_paragraph.movementMethod = ScrollingMovementMethod()
         scrollViewSlogan.isSmoothScrollingEnabled = true
 
 //        setSlider()
@@ -161,12 +187,14 @@ class DashboardActivity : BaseActivity(), DashboardViewModel.DashboardViewModelC
             }
         }
 
-        val slide = TranslateAnimation(0F, 0F, 0F, -txtSlogan.getBottom().toFloat())
+        //--------------- This code is for sliding Textview content automatically------------------
+        /*val slide = TranslateAnimation(0F, 0F, 0F, -txtSlogan.getBottom().toFloat())
         slide.setDuration(50000)
         slide.setRepeatCount(Animation.INFINITE)
         slide.setRepeatMode(Animation.RESTART)
         slide.setInterpolator(LinearInterpolator())
-        txtSlogan.startAnimation(slide)
+        txtSlogan.startAnimation(slide)*/
+        // --------------------------------------------------------------------------
     }
 
     override fun onError(err: String) {
@@ -193,7 +221,7 @@ class DashboardActivity : BaseActivity(), DashboardViewModel.DashboardViewModelC
             override fun run() {
                 handler.post(Update)
             }
-        }, 7000, 7000)
+        }, 20000, 20000)
 
     }
 
@@ -496,6 +524,51 @@ class DashboardActivity : BaseActivity(), DashboardViewModel.DashboardViewModelC
         } catch (e: java.lang.Exception) {
             Toast.makeText(this, "No application found to perform this action.", Toast.LENGTH_LONG)
                 .show()
+        }
+    }
+
+    fun justify(textView: TextView) {
+        val isJustify = AtomicBoolean(false)
+        val textString = textView.text.toString()
+        val textPaint = textView.paint
+        val builder = SpannableStringBuilder()
+        textView.post {
+            if (!isJustify.get()) {
+                val lineCount = textView.lineCount
+                val textViewWidth = textView.width
+                for (i in 0 until lineCount) {
+                    val lineStart = textView.layout.getLineStart(i)
+                    val lineEnd = textView.layout.getLineEnd(i)
+                    val lineString = textString.substring(lineStart, lineEnd)
+                    if (i == lineCount - 1) {
+                        builder.append(SpannableString(lineString))
+                        break
+                    }
+                    val trimSpaceText = lineString.trim { it <= ' ' }
+                    val removeSpaceText = lineString.replace(" ".toRegex(), "")
+                    val removeSpaceWidth = textPaint.measureText(removeSpaceText)
+                    val spaceCount = (trimSpaceText.length - removeSpaceText.length).toFloat()
+                    val eachSpaceWidth = (textViewWidth - removeSpaceWidth) / spaceCount
+                    val spannableString = SpannableString(lineString)
+                    for (j in 0 until trimSpaceText.length) {
+                        val c = trimSpaceText[j]
+                        if (c == ' ') {
+                            val drawable: Drawable = ColorDrawable(0x00ffffff)
+                            drawable.setBounds(0, 0, eachSpaceWidth.toInt(), 0)
+                            val span = ImageSpan(drawable)
+                            spannableString.setSpan(
+                                span,
+                                j,
+                                j + 1,
+                                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+                            )
+                        }
+                    }
+                    builder.append(spannableString)
+                }
+                textView.text = builder
+                isJustify.set(true)
+            }
         }
     }
 
