@@ -53,11 +53,8 @@ import org.lakulishdham.fragment.DonationOptionDialogFragment
 import org.lakulishdham.fragment.OneTimeDonationDialogFragment
 import org.lakulishdham.helper.AppConstants
 import org.lakulishdham.helper.AppLogger
-import org.lakulishdham.helper.DialogOptionsSelectedListener
-import org.lakulishdham.helper.Functions
 import org.lakulishdham.helper.fireIntent
 import org.lakulishdham.helper.fireIntentWithData
-import org.lakulishdham.helper.showAlert
 import org.lakulishdham.helper.showRedError
 import org.lakulishdham.model.AddDonationRequest
 import org.lakulishdham.model.DonationListData
@@ -70,7 +67,6 @@ import org.lakulishdham.viewmodels.DashboardViewModel
 import java.util.Date
 import java.util.Timer
 import java.util.TimerTask
-import java.util.concurrent.atomic.AtomicBoolean
 
 
 class DashboardActivity : BaseActivity(), DashboardViewModel.DashboardViewModelCallback,
@@ -409,42 +405,13 @@ class DashboardActivity : BaseActivity(), DashboardViewModel.DashboardViewModelC
         }
     }
 
-    fun checkUpdateAvailable(versionCode: String, versionName: String) {
-
-        val code = versionCode.toInt()
-        val appCode = BuildConfig.VERSION_CODE
-        if (appCode < code) {
-            showUpdateAlert()
-        }
-    }
-
-    fun showUpdateAlert() {
-        showAlert(
-            "Update App?",
-            "\nA new version of Lakulishdham App is now available.\n\nWould you like to update now?\n",
-            "UPDATE NOW",
-            "LATER",
-            object :
-                DialogOptionsSelectedListener {
-                override fun onSelect(isYes: Boolean) {
-                    val s =
-                        "https://play.google.com/store/apps/details?id=${BuildConfig.APPLICATION_ID}"
-                    Functions.openBrowser(this@DashboardActivity, s)
-
-                }
-            },
-            object : DialogOptionsSelectedListener {
-                override fun onSelect(isYes: Boolean) {
-                }
-            })
-    }
-
     private fun checkForUpdates() {
         try {
             CustomProgressUtils.showProgress(this)
 
             val appUpdaterUtils = AppUpdaterUtils(this)
-            appUpdaterUtils.setUpdateFrom(UpdateFrom.GOOGLE_PLAY)
+            appUpdaterUtils.setUpdateFrom(UpdateFrom.JSON)
+            appUpdaterUtils.setUpdateJSON(AppConstants.APP_UPDATE_JSON)
             appUpdaterUtils.withListener(object : AppUpdaterUtils.UpdateListener {
                 override fun onSuccess(update: Update?, isUpdateAvailable: Boolean?) {
                     CustomProgressUtils.hideProgress()
@@ -524,51 +491,6 @@ class DashboardActivity : BaseActivity(), DashboardViewModel.DashboardViewModelC
         } catch (e: java.lang.Exception) {
             Toast.makeText(this, "No application found to perform this action.", Toast.LENGTH_LONG)
                 .show()
-        }
-    }
-
-    fun justify(textView: TextView) {
-        val isJustify = AtomicBoolean(false)
-        val textString = textView.text.toString()
-        val textPaint = textView.paint
-        val builder = SpannableStringBuilder()
-        textView.post {
-            if (!isJustify.get()) {
-                val lineCount = textView.lineCount
-                val textViewWidth = textView.width
-                for (i in 0 until lineCount) {
-                    val lineStart = textView.layout.getLineStart(i)
-                    val lineEnd = textView.layout.getLineEnd(i)
-                    val lineString = textString.substring(lineStart, lineEnd)
-                    if (i == lineCount - 1) {
-                        builder.append(SpannableString(lineString))
-                        break
-                    }
-                    val trimSpaceText = lineString.trim { it <= ' ' }
-                    val removeSpaceText = lineString.replace(" ".toRegex(), "")
-                    val removeSpaceWidth = textPaint.measureText(removeSpaceText)
-                    val spaceCount = (trimSpaceText.length - removeSpaceText.length).toFloat()
-                    val eachSpaceWidth = (textViewWidth - removeSpaceWidth) / spaceCount
-                    val spannableString = SpannableString(lineString)
-                    for (j in 0 until trimSpaceText.length) {
-                        val c = trimSpaceText[j]
-                        if (c == ' ') {
-                            val drawable: Drawable = ColorDrawable(0x00ffffff)
-                            drawable.setBounds(0, 0, eachSpaceWidth.toInt(), 0)
-                            val span = ImageSpan(drawable)
-                            spannableString.setSpan(
-                                span,
-                                j,
-                                j + 1,
-                                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
-                            )
-                        }
-                    }
-                    builder.append(spannableString)
-                }
-                textView.text = builder
-                isJustify.set(true)
-            }
         }
     }
 
