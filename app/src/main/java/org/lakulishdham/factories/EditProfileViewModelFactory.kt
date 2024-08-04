@@ -9,7 +9,7 @@ import org.lakulishdham.viewmodels.OTPViewModel
 import org.lakulishdham.viewmodels.SignUpViewModel
 
 class EditProfileViewModelFactory(private val context: Context, private val callback: EditProfileViewModel.EditProfileViewModelCallback) : ViewModelProvider.Factory {
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return EditProfileViewModel(context, callback) as T
     }
 }

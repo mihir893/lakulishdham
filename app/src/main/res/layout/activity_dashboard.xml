@@ -121,14 +121,14 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="50"
-        android:gravity="top"
-        android:orientation="vertical">
+        android:gravity="top">
 
         <ScrollView
             android:id="@+id/scrollViewSlogan"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
+            android:layout_height="wrap_content"
+            android:layout_above="@id/btn_onetime_donate"
+            android:layout_marginBottom="8dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -138,7 +138,6 @@
                     android:id="@+id/tv_justified_paragraph"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingTop="24dp"
                     android:paddingBottom="24dp"
                     android:scrollbars="vertical"
                     android:text="@string/dashboard_msg"
@@ -177,14 +176,6 @@
             android:layout_weight="1"
             android:visibility="gone" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
-            android:paddingBottom="24dp"
-            android:layout_alignParentBottom="true">
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_onetime_donate"
@@ -195,7 +186,8 @@
                 android:onClick="ClickOnOneTimeDonate"
                 android:text="One time Donate"
                 android:textAllCaps="false"
-                android:layout_margin="4dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginBottom="8dp"
                 android:letterSpacing="0"
                 android:layout_above="@id/btn_monthly_donate"/>
 
@@ -210,10 +202,9 @@
                 android:textAllCaps="false"
                 android:layout_alignParentBottom="true"
                 android:letterSpacing="0"
-                android:layout_margin="4dp"/>
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginBottom="16dp"/>
 
-
-        </RelativeLayout>
 
     </RelativeLayout>
 

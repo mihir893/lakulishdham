@@ -267,7 +267,7 @@ class DashboardActivity : BaseActivity(), DashboardViewModel.DashboardViewModelC
     }
 
 
-    fun setUserInfo() {
+    private fun setUserInfo() {
         userData = PrefUtils.getUserData(this)
         userData.let {
             txtWelcomeUser.text = "Welcome,\n${userData.name}"
