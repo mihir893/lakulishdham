@@ -127,7 +127,7 @@
             android:id="@+id/scrollViewSlogan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@id/btn_onetime_donate"
+            android:layout_above="@id/btn_monthly_donate"
             android:layout_marginBottom="8dp">
 
             <RelativeLayout
@@ -189,7 +189,8 @@
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginBottom="8dp"
                 android:letterSpacing="0"
-                android:layout_above="@id/btn_monthly_donate"/>
+                android:layout_above="@id/btn_monthly_donate"
+                android:visibility="gone"/>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_monthly_donate"
