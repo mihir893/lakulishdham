@@ -207,7 +207,7 @@ class MyAccountActivity : BaseActivity(), View.OnClickListener,
     override fun onPaymentSuccess(razorpayPaymentID: String?, paymentData: PaymentData?) {
         AppLogger.e("PAYMENT_SUCCESS : ${razorpayPaymentID}")
         AppLogger.e("PAYMENT_DATA : ${Gson().toJson(paymentData)}")
-//        addDonation(paymentData)
+        addDonation(paymentData)
     }
 
     override fun onPaymentError(code: Int, response: String?, paymentData: PaymentData?) {
