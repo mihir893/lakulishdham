@@ -63,6 +63,7 @@ import org.lakulishdham.model.OrderData
 import org.lakulishdham.model.UserData
 import org.lakulishdham.utility.CustomProgressUtils
 import org.lakulishdham.utility.DateFormatterUtils
+import org.lakulishdham.utility.Utils
 import org.lakulishdham.viewmodels.DashboardViewModel
 import java.util.Date
 import java.util.Timer
@@ -332,13 +333,7 @@ class DashboardActivity : BaseActivity(), DashboardViewModel.DashboardViewModelC
 
     override fun onPaymentError(code: Int, response: String?, paymentData: PaymentData?) {
         AppLogger.e("PAYMENT_FAIL_DATA : ${Gson().toJson(paymentData)}")
-
-        val intent = Intent(this, DonationStatusActivity::class.java)
-        intent.putExtra(DonationStatusActivity.INTENT_TRANSACTION_STATUS, false)
-        intent.putExtra(DonationStatusActivity.INTENT_SUBSCRIPTION, false)
-        intent.putExtra(DonationStatusActivity.INTENT_TRANS_ID, "")
-        intent.putExtra(DonationStatusActivity.INTENT_SUBSCRIP_AMOUNT, "0")
-        fireIntentWithData(intent, true)
+        Utils.handlePaymentError(this, code, response, paymentData)
     }
 
     override fun onPaymentSuccess(razorpayPaymentID: String?, paymentData: PaymentData?) {

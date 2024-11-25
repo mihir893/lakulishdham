@@ -48,6 +48,7 @@ class SignUpActivity : BaseActivity(), SignUpViewModel.SignUpViewModelCallback,
         edDistrict.setOnClickListener(this)
         btnSignup.setOnClickListener(this)
         txtTermsConds.setOnClickListener(this)
+        txt_signin.setOnClickListener(this)
     }
 
     override fun onGetCountriesData(list: ArrayList<CountryListData>?) {
@@ -147,20 +148,32 @@ class SignUpActivity : BaseActivity(), SignUpViewModel.SignUpViewModelCallback,
             R.id.txtTermsConds -> {
                 openBrowser(AppConstants.TERMS_CONDITIONS)
             }
+            R.id.txt_signin -> {
+                fireIntent(LoginActivity::class.java, true)
+            }
 
         }
     }
 
     private fun goForSignup() {
 
-        if (edName.Text().isEmpty()) {
-            edName.requestFocus()
-            showRedError("Please Enter Full Name")
+        if (!edFirstName.Text().isValidFirstName()) {
+            edFirstName.requestFocus()
+            scrollview.smoothScrollTo(0, edFirstName.top)
+            showRedError("Please Enter Valid First Name With Maximum 15 Chars")
+            return
+        }
+
+        if (edSurName.Text().isEmpty()) {
+            edSurName.requestFocus()
+            scrollview.smoothScrollTo(0, edSurName.top)
+            showRedError("Please Enter Surname")
             return
         }
 
         if(!edMobileNumber.Text().isValidPhone()) {
             edMobileNumber.requestFocus()
+            scrollview.smoothScrollTo(0, edMobileNumber.top)
             showRedError(resources.getString(R.string.valid_mobile_number))
             return
         }
@@ -173,18 +186,21 @@ class SignUpActivity : BaseActivity(), SignUpViewModel.SignUpViewModelCallback,
 
         if (edCountry.Text().isEmpty()) {
             edCountry.requestFocus()
+            scrollview.smoothScrollTo(0, edCountry.top)
             showRedError("Please Select Country")
             return
         }
 
         if (edState.Text().isEmpty()) {
             edState.requestFocus()
+            scrollview.smoothScrollTo(0, edState.top)
             showRedError("Please Select State")
             return
         }
 
         if (edDistrict.Text().isEmpty()) {
             edDistrict.requestFocus()
+            scrollview.smoothScrollTo(0, edDistrict.top)
             showRedError("Please Select District")
             return
         }
@@ -224,7 +240,7 @@ class SignUpActivity : BaseActivity(), SignUpViewModel.SignUpViewModelCallback,
             return
         }
 
-        request.name = edName.Text()
+        request.name = edFirstName.Text().trim() + " " + edSurName.Text().trim()
         request.phone_number = edMobileNumber.Text()
         request.email = edEmail.Text()
         request.address = edAddress.Text()

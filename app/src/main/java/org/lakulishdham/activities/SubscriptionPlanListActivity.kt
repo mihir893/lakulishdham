@@ -1,32 +1,40 @@
 package org.lakulishdham.activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.adcreators.youtique.helper.PrefUtils
 import com.google.gson.Gson
 import com.razorpay.Checkout
 import com.razorpay.PaymentData
 import com.razorpay.PaymentResultWithDataListener
-import kotlinx.android.synthetic.main.activity_subscription_plan_list.*
+import kotlinx.android.synthetic.main.activity_subscription_plan_list.rvPlans
 import org.json.JSONObject
 import org.lakulishdham.R
 import org.lakulishdham.adapters.SubscriptionListAdapter
-import org.lakulishdham.factories.DashboardViewModelFactory
 import org.lakulishdham.factories.SubscriptionViewModelFactory
-import org.lakulishdham.helper.*
-import org.lakulishdham.model.*
+import org.lakulishdham.helper.AppConstants
+import org.lakulishdham.helper.AppLogger
+import org.lakulishdham.helper.DialogOptionsSelectedListener
+import org.lakulishdham.helper.closeScreen
+import org.lakulishdham.helper.fireIntentWithData
+import org.lakulishdham.helper.showAlert
+import org.lakulishdham.helper.showRedError
+import org.lakulishdham.helper.showToast
+import org.lakulishdham.model.AddDonationRequest
+import org.lakulishdham.model.DonationListData
+import org.lakulishdham.model.GenerateSubscriptionData
+import org.lakulishdham.model.SubscriptionListData
+import org.lakulishdham.model.UserData
 import org.lakulishdham.utility.DateFormatterUtils
 import org.lakulishdham.utility.SpaceItemDecoration
-import org.lakulishdham.viewmodels.DashboardViewModel
+import org.lakulishdham.utility.Utils
 import org.lakulishdham.viewmodels.SuubscriptionViewModel
-import java.util.*
-import kotlin.collections.ArrayList
+import java.util.Date
 
 class SubscriptionPlanListActivity : AppCompatActivity(),
     SuubscriptionViewModel.SubscriptionViewModelCallback,
@@ -126,12 +134,8 @@ class SubscriptionPlanListActivity : AppCompatActivity(),
     }
 
     override fun onPaymentError(code: Int, response: String?, paymentData: PaymentData?) {
-        val intent = Intent(this,DonationStatusActivity::class.java)
-        intent.putExtra(DonationStatusActivity.INTENT_TRANSACTION_STATUS,false)
-        intent.putExtra(DonationStatusActivity.INTENT_SUBSCRIPTION,false)
-        intent.putExtra(DonationStatusActivity.INTENT_TRANS_ID,"")
-        intent.putExtra(DonationStatusActivity.INTENT_SUBSCRIP_AMOUNT,"0")
-        fireIntentWithData(intent,true)
+        AppLogger.e("PAYMENT_FAIL_DATA : ${Gson().toJson(paymentData)}")
+        Utils.handlePaymentError(this, code, response, paymentData)
     }
 
     override fun onPaymentSuccess(razorpayPaymentID: String?, paymentData: PaymentData?) {

@@ -8,10 +8,12 @@
     tools:context=".activities.SignUpActivity">
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollview"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -25,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_bold"
                 android:gravity="center"
-                android:padding="32dp"
+                android:padding="20dp"
                 android:text="@string/create_new_account"
                 android:textColor="@color/grey4"
                 android:textSize="20sp"
@@ -33,17 +35,64 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <LinearLayout
+                android:id="@+id/ll_signin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/header"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:background="@color/white">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="@string/already_have_account"
+                    android:textColor="@color/grey4"
+                    android:textSize="15sp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txt_signin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_semibold"
+                    android:padding="8dp"
+                    android:text="@string/login"
+                    android:textColor="@color/orange_dark"
+                    android:textSize="14sp"/>
+
+            </LinearLayout>
+
             <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/edName"
+                android:id="@+id/edFirstName"
                 style="@style/EditTextStyle"
                 android:layout_marginStart="24dp"
                 android:layout_marginEnd="24dp"
                 android:layout_marginBottom="16dp"
-                android:hint="@string/full_name"
+                android:layout_marginTop="16dp"
+                android:hint="@string/first_name"
+                android:maxLength="16"
                 android:inputType="textPersonName"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/header" />
+                app:layout_constraintTop_toBottomOf="@id/ll_signin" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edSurName"
+                style="@style/EditTextStyle"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginBottom="16dp"
+                android:layout_marginTop="16dp"
+                android:hint="@string/sur_name"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/edFirstName" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/layout_mobile"
@@ -51,7 +100,7 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/edName"
+                app:layout_constraintTop_toBottomOf="@id/edSurName"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="24dp"
@@ -183,7 +232,7 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="24dp"
-                android:hint="@string/password"
+                android:hint="@string/password1"
                 android:inputType="textPassword"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
