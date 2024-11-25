@@ -11,12 +11,11 @@
         android:id="@+id/imgMain"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:src="@drawable/lakulish_name"
+        android:src="@drawable/splash_logo_hg"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/layout_mobile"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:tint="@color/orange_dark"
         android:padding="24dp"
         android:layout_margin="24dp"/>
 

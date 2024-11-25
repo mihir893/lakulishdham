@@ -21,6 +21,7 @@ class AppConstants {
         const val DEFAULT_EMAIL = "lakulishdham@gmail.com"
         const val DEFAULT_REFERBY = "lakulishdham_app"
         const val TERMS_CONDITIONS = "https://lakulishsanskriti.org/termsandcondition.html"
+        const val APP_UPDATE_JSON = "https://lakulishsanskriti.org/update-changelog.json"
 
         const val FROM_LOGIN = "login"
         const val FROM_REGISTER = "register"

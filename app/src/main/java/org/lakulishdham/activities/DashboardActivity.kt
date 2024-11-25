@@ -2,18 +2,24 @@ package org.lakulishdham.activities
 
 import android.content.DialogInterface
 import android.content.Intent
+import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.Drawable
+import android.graphics.text.LineBreaker.JUSTIFICATION_MODE_INTER_WORD
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
+import android.text.SpannableString
+import android.text.SpannableStringBuilder
+import android.text.Spanned
 import android.text.method.ScrollingMovementMethod
+import android.text.style.ImageSpan
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.Animation
-import android.view.animation.LinearInterpolator
-import android.view.animation.TranslateAnimation
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
@@ -29,7 +35,13 @@ import com.google.gson.Gson
 import com.razorpay.Checkout
 import com.razorpay.PaymentData
 import com.razorpay.PaymentResultWithDataListener
-import kotlinx.android.synthetic.main.activity_dashboard.*
+import kotlinx.android.synthetic.main.activity_dashboard.indicator_layout
+import kotlinx.android.synthetic.main.activity_dashboard.scrollViewSlogan
+import kotlinx.android.synthetic.main.activity_dashboard.tv_justified_paragraph
+import kotlinx.android.synthetic.main.activity_dashboard.txtSlogan
+import kotlinx.android.synthetic.main.activity_dashboard.txtWelcomeUser
+import kotlinx.android.synthetic.main.activity_dashboard.viewPagerText
+import kotlinx.android.synthetic.main.activity_dashboard.viewPgerSlider
 import org.json.JSONObject
 import org.lakulishdham.BaseActivity
 import org.lakulishdham.BuildConfig
@@ -39,12 +51,23 @@ import org.lakulishdham.adapters.TextSliderAdapter
 import org.lakulishdham.factories.DashboardViewModelFactory
 import org.lakulishdham.fragment.DonationOptionDialogFragment
 import org.lakulishdham.fragment.OneTimeDonationDialogFragment
-import org.lakulishdham.helper.*
-import org.lakulishdham.model.*
+import org.lakulishdham.helper.AppConstants
+import org.lakulishdham.helper.AppLogger
+import org.lakulishdham.helper.fireIntent
+import org.lakulishdham.helper.fireIntentWithData
+import org.lakulishdham.helper.showRedError
+import org.lakulishdham.model.AddDonationRequest
+import org.lakulishdham.model.DonationListData
+import org.lakulishdham.model.GalleryData
+import org.lakulishdham.model.OrderData
+import org.lakulishdham.model.UserData
 import org.lakulishdham.utility.CustomProgressUtils
 import org.lakulishdham.utility.DateFormatterUtils
+import org.lakulishdham.utility.Utils
 import org.lakulishdham.viewmodels.DashboardViewModel
-import java.util.*
+import java.util.Date
+import java.util.Timer
+import java.util.TimerTask
 
 
 class DashboardActivity : BaseActivity(), DashboardViewModel.DashboardViewModelCallback,
@@ -96,7 +119,7 @@ class DashboardActivity : BaseActivity(), DashboardViewModel.DashboardViewModelC
 
         viewModel.fetchGalleryImages()
 
-        txtSlogan.movementMethod = ScrollingMovementMethod()
+        tv_justified_paragraph.movementMethod = ScrollingMovementMethod()
         scrollViewSlogan.isSmoothScrollingEnabled = true
 
 //        setSlider()
@@ -161,12 +184,14 @@ class DashboardActivity : BaseActivity(), DashboardViewModel.DashboardViewModelC
             }
         }
 
-        val slide = TranslateAnimation(0F, 0F, 0F, -txtSlogan.getBottom().toFloat())
+        //--------------- This code is for sliding Textview content automatically------------------
+        /*val slide = TranslateAnimation(0F, 0F, 0F, -txtSlogan.getBottom().toFloat())
         slide.setDuration(50000)
         slide.setRepeatCount(Animation.INFINITE)
         slide.setRepeatMode(Animation.RESTART)
         slide.setInterpolator(LinearInterpolator())
-        txtSlogan.startAnimation(slide)
+        txtSlogan.startAnimation(slide)*/
+        // --------------------------------------------------------------------------
     }
 
     override fun onError(err: String) {
@@ -193,7 +218,7 @@ class DashboardActivity : BaseActivity(), DashboardViewModel.DashboardViewModelC
             override fun run() {
                 handler.post(Update)
             }
-        }, 7000, 7000)
+        }, 20000, 20000)
 
     }
 
@@ -239,7 +264,7 @@ class DashboardActivity : BaseActivity(), DashboardViewModel.DashboardViewModelC
     }
 
 
-    fun setUserInfo() {
+    private fun setUserInfo() {
         userData = PrefUtils.getUserData(this)
         userData.let {
             txtWelcomeUser.text = "Welcome,\n${userData.name}"
@@ -308,13 +333,7 @@ class DashboardActivity : BaseActivity(), DashboardViewModel.DashboardViewModelC
 
     override fun onPaymentError(code: Int, response: String?, paymentData: PaymentData?) {
         AppLogger.e("PAYMENT_FAIL_DATA : ${Gson().toJson(paymentData)}")
-
-        val intent = Intent(this, DonationStatusActivity::class.java)
-        intent.putExtra(DonationStatusActivity.INTENT_TRANSACTION_STATUS, false)
-        intent.putExtra(DonationStatusActivity.INTENT_SUBSCRIPTION, false)
-        intent.putExtra(DonationStatusActivity.INTENT_TRANS_ID, "")
-        intent.putExtra(DonationStatusActivity.INTENT_SUBSCRIP_AMOUNT, "0")
-        fireIntentWithData(intent, true)
+        Utils.handlePaymentError(this, code, response, paymentData)
     }
 
     override fun onPaymentSuccess(razorpayPaymentID: String?, paymentData: PaymentData?) {
@@ -381,42 +400,13 @@ class DashboardActivity : BaseActivity(), DashboardViewModel.DashboardViewModelC
         }
     }
 
-    fun checkUpdateAvailable(versionCode: String, versionName: String) {
-
-        val code = versionCode.toInt()
-        val appCode = BuildConfig.VERSION_CODE
-        if (appCode < code) {
-            showUpdateAlert()
-        }
-    }
-
-    fun showUpdateAlert() {
-        showAlert(
-            "Update App?",
-            "\nA new version of Lakulishdham App is now available.\n\nWould you like to update now?\n",
-            "UPDATE NOW",
-            "LATER",
-            object :
-                DialogOptionsSelectedListener {
-                override fun onSelect(isYes: Boolean) {
-                    val s =
-                        "https://play.google.com/store/apps/details?id=${BuildConfig.APPLICATION_ID}"
-                    Functions.openBrowser(this@DashboardActivity, s)
-
-                }
-            },
-            object : DialogOptionsSelectedListener {
-                override fun onSelect(isYes: Boolean) {
-                }
-            })
-    }
-
     private fun checkForUpdates() {
         try {
             CustomProgressUtils.showProgress(this)
 
             val appUpdaterUtils = AppUpdaterUtils(this)
-            appUpdaterUtils.setUpdateFrom(UpdateFrom.GOOGLE_PLAY)
+            appUpdaterUtils.setUpdateFrom(UpdateFrom.JSON)
+            appUpdaterUtils.setUpdateJSON(AppConstants.APP_UPDATE_JSON)
             appUpdaterUtils.withListener(object : AppUpdaterUtils.UpdateListener {
                 override fun onSuccess(update: Update?, isUpdateAvailable: Boolean?) {
                     CustomProgressUtils.hideProgress()

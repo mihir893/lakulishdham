@@ -10,6 +10,8 @@ import org.lakulishdham.BaseActivity
 import org.lakulishdham.R
 import org.lakulishdham.factories.MyAccountViewModelFactory
 import org.lakulishdham.helper.*
+import org.lakulishdham.model.DonationListData
+import org.lakulishdham.model.OrderData
 import org.lakulishdham.model.UserData
 import org.lakulishdham.viewmodels.MyAccountViewModel
 
@@ -68,6 +70,12 @@ class MySubscriptionActivity : BaseActivity(), MyAccountViewModel.AccountViewMod
 
         PrefUtils.setUserData(this,data)
         closeScreen()
+    }
+
+    override fun onGetOrderData(data: OrderData?) {
+    }
+
+    override fun onDonationSuccessful(data: DonationListData?) {
     }
 
     override fun onError(err: String) {

@@ -34,7 +34,7 @@ class MainActivity : BaseActivity() {
             fireIntent(DashboardActivity::class.java,true)
         }
         else {
-            fireIntent(LoginActivity::class.java,true)
+            fireIntent(SignUpActivity::class.java,true)
         }
     }
 

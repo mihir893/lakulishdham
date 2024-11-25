@@ -1,5 +1,6 @@
 package org.lakulishdham.utility
 
+import android.app.Activity
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
@@ -24,13 +25,19 @@ class CustomProgressUtils {
                 progressDialog!!.setCanceledOnTouchOutside(false)
                 progressDialog!!.setCancelable(false)
 
+                try {
+                    progressDialog!!.setOwnerActivity(context as Activity)
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+
             }
             progressDialog!!.show()
         }
 
         fun hideProgress() {
             try {
-                if (progressDialog != null && progressDialog!!.isShowing) {
+                if (!progressDialog?.ownerActivity?.isFinishing!! && progressDialog != null && progressDialog!!.isShowing) {
                     progressDialog!!.dismiss()
                     progressDialog = null
                 }

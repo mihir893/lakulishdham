@@ -8,7 +8,7 @@ import org.lakulishdham.viewmodels.MemberViewModel
 import org.lakulishdham.viewmodels.OTPViewModel
 
 class MemberViewModelFactory(private val context: Context, private val callback: MemberViewModel.MemberViewModelCallback) : ViewModelProvider.Factory {
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return MemberViewModel(context, callback) as T
     }
 }

@@ -84,6 +84,13 @@ fun String.isValidPassword() : Boolean {
     else return this.length >= 6
 }
 
+fun String.isValidFirstName() : Boolean {
+    if (this.isNullOrEmpty()) {
+        return false
+    }
+    else return this.length <= 15
+}
+
 
 fun String.isValidEmail() : Boolean {
     if (this.isNullOrEmpty()) {
@@ -116,7 +123,7 @@ fun Context.showToast(msg: String?) {
     val view = View.inflate(this, R.layout.layout_toast, null)
 
     view.txtTopError.text = msg
-    view.txtTopError.setBackgroundColor(Color.BLACK)
+    view.txtTopError.setBackgroundColor(ContextCompat.getColor(this, R.color.grey1))
 
     val toast = Toast(this)
     toast.setGravity(Gravity.BOTTOM or Gravity.FILL_HORIZONTAL, 0, 60);

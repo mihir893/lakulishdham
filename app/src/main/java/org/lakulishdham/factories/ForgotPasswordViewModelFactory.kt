@@ -8,7 +8,7 @@ import org.lakulishdham.viewmodels.LoginViewModel
 import org.lakulishdham.viewmodels.OTPViewModel
 
 class ForgotPasswordViewModelFactory(private val context: Context, private val callback: ForgotPasswordViewModel.ForgotPasswordViewModelCallback) : ViewModelProvider.Factory {
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return ForgotPasswordViewModel(context, callback) as T
     }
 }
